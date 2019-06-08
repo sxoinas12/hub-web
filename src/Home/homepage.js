@@ -14,7 +14,7 @@ class HomePage extends React.Component{
 
 			<div>
 				<div>
-				<Parallax image={<img src='./img/page1.jpg' />} />
+				<Parallax image={<img src='./img/page6.jpg' />} />
 					<div className="section white">
 					<div className="row ">
 					<h2 className="header">

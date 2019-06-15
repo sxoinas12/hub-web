@@ -16,6 +16,9 @@ import './router.css';
 //Import pages
 import HomePage from '../Home/homepage';
 import Login from '../Login/index';
+import UserSevice from '../Services/UserService';
+
+
 
 function About() {
   return <h2>ABout the users</h2>;
@@ -28,27 +31,9 @@ function Users() {
 function Contact() {
   return <h2>contacts</h2>;
 }
-
-
-const AuthConext = React.createContext();
-
-class MyProvider extends React.Component {
-	state = {
-		isAuthenticated:false
-	}
-	render(){
-		return (
-			<AuthConext.Provider>
-				{this.props.children}
-			</AuthConext.Provider>
-		)
-	}
-}
-
-
 const PrivateRoute = ({component:Component , ...rest }) => (
 	<Route { ...rest } render = {(props) => 
-		props.location.isAuthenticated === true ? 
+		UserSevice.isAuthenticated === true ? 
 		<Component {...props} />
 		: <Redirect to={{
 			pathname:"/login",
@@ -63,14 +48,11 @@ const PrivateRoute = ({component:Component , ...rest }) => (
 class AppRouter extends React.Component{
 	constructor(props){
 		super(props)
-		this.state = {
-			isAuthenticated:false
+		this.state = {	
 		}
 	} 
 
-	onAuth(){
-		this.setState({isAuthenticated:true});
-	}
+	
 
 	render(){
 	return (
@@ -94,7 +76,7 @@ class AppRouter extends React.Component{
 			<Route path="/" exact component={HomePage} />
 			<Route path="/contact/" component={Contact} />
         	<Route path="/users/" component={Users} />
-        	<Route path="/login/" render={(props) => <Login {...props} auth={() => this.onAuth()} /> } />
+        	<Route path="/login/" component={Login} />
 
 
         	{/* Privates Routes are defined here */}

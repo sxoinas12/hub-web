@@ -11,8 +11,7 @@ class Login extends React.Component{
 		super(props)
 		this.state = {
 			username:"",
-			password:"",
-			isAuthenticated:false,
+			password:""
 		};
 		this.API = new API()
 	}
@@ -20,7 +19,6 @@ class Login extends React.Component{
 	handleSubmit(e){
 		this.API.post('http://localhost:3001/users/login',this.state)
 		.then((user) => {
-			this.setState({isAuthenticated:true});
 			this.props.auth();
 		}).catch((e) => console.log(e))
 	}
@@ -38,8 +36,7 @@ class Login extends React.Component{
 		if( isAuthenticated === true){
 			return (
 				<Redirect to= {{
-					pathname:from.pathname,
-					isAuthenticated: this.state.isAuthenticated
+					pathname:from.pathname
 				}} />
 				)
 			}

@@ -5,6 +5,8 @@ import './index.css';
 import Button from '@material-ui/core/Button';
 import API from '../Services/API';
 import { BrowserRouter as Router, Route, Link, Redirect } from "react-router-dom";
+import {UserContext} from '../Services/ProviderService';
+
 
 class Login extends React.Component{
 	constructor(props){
@@ -19,7 +21,7 @@ class Login extends React.Component{
 	handleSubmit(e){
 		this.API.post('http://localhost:3001/users/login',this.state)
 		.then((user) => {
-			this.props.auth();
+			this.props.context.searchTermChanged({user:{isAuthenticated:true}})
 		}).catch((e) => console.log(e))
 	}
 
@@ -30,17 +32,21 @@ class Login extends React.Component{
 	}
 
 	render(){
+		let from = '/home'
+		if(this.props.location.state){
+			from  = this.props.location.state.from;
+		}
 
-		const {isAuthenticated} = this.state;
-		const { from } = this.props.location.state || { from : { pathname : '/' } };
-		if( isAuthenticated === true){
+		
+		
+		if( this.props.context.user.isAuthenticated === true){
 			return (
 				<Redirect to= {{
 					pathname:from.pathname
 				}} />
 				)
 			}
-
+		
 		return(
 			<div className="container">
 				<Paper className="form">

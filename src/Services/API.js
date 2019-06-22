@@ -1,11 +1,5 @@
 
-
-
-
 class API {
-	constructor(){
-
-	}
 	post(url,data){
 		try{
 			let options = {

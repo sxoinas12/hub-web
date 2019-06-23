@@ -51,14 +51,7 @@ class Login extends React.Component{
 	}
 
 	LogWithLink(e){
-		console.log("DO I COM########")
-		axios.get('http://localhost:3001/auth').then(response => response.data)
-		.then((url) =>  {
-			
-
-			console.log(url)
-			window.location.href = url;
-		}).catch((e) => console.log("ERRRRRROr",e))
+		window.location.href = "https://www.linkedin.com/oauth/v2/authorization?response_type=code&client_id=77yj9s749chsnc&redirect_uri=http://localhost:3001/auth/linkedin/callback&state=fooobar&scope=r_liteprofile%20r_emailaddress%20w_member_social"
 	}
 
 

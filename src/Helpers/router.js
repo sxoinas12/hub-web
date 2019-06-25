@@ -24,7 +24,7 @@ function About() {
 }
 
 function Users() {
-  return <h2>Users</h2>;
+  return <h2><button onClick={(e) => fetch("http://localhost:3001/users/me",{credentials: "include"})}>Test Sesion</button>Users</h2>;
 }
 
 function Contact() {

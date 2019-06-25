@@ -28,8 +28,6 @@ class Login extends React.Component{
 	
 	handleSubmit(e){
 		let user = this.state.user;
-
-
 		this.API.post('http://localhost:3001/users/login',user)
 		.then((user) => {
 			this.props.context.searchTermChanged({user:{isAuthenticated:true}})
@@ -51,7 +49,7 @@ class Login extends React.Component{
 	}
 
 	LogWithLink(e){
-		window.location.href = "https://www.linkedin.com/oauth/v2/authorization?response_type=code&client_id=77yj9s749chsnc&redirect_uri=http://localhost:3001/auth/linkedin/callback&state=fooobar&scope=r_liteprofile%20r_emailaddress%20w_member_social"
+		window.location.href = "https://www.linkedin.com/oauth/v2/authorization?response_type=code&client_id=77yj9s749chsnc&redirect_uri=http://localhost:3001/users/auth/linkedin&state=fooobar&scope=r_liteprofile%20r_emailaddress%20w_member_social"
 	}
 
 
